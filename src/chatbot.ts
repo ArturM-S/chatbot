@@ -79,8 +79,6 @@ client.on('message_create', async (message: Message) => {
             const page = await browser.newPage();
             await page.goto(`https://www.google.com/search?q=${message.body.replace('!imagem', '')}&tbm=isch`);
             await page.click('img.rg_i.Q4LuWd',{ button: "middle"});
-            let pages = await browser.pages();
-
             await page.waitForTimeout(7000);
             const image = await page.screenshot({ encoding: 'base64', type: 'jpeg', quality: 100, clip: { x: 0, y: 0, width: 1250, height: 1250 } });
             await page.close();
