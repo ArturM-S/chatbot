@@ -6,6 +6,7 @@ const client = new Client(
    { 
     puppeteer: {
         headless: false,
+        args: ["--no-sandbox"],
     },
     authStrategy: new LocalAuth()
 }
@@ -56,7 +57,7 @@ client.on('message_create', async (message: Message) => {
             await page.goto(`https://www.google.com/search?q=${message.body.replace('!pesquisa', '')}`);
             await page.click('h3');
             await page.waitForTimeout(7000);
-            const image = await page.screenshot({ encoding: 'base64', type: 'jpeg', quality: 100, clip: { x: 0, y: 0, width: 1250, height: 1250 } });
+            const image = await page.screenshot({ encoding: 'base64', type: 'jpeg', quality: 100, clip: { x: 0, y: 0, width: 1000, height: 1250 } });
             await page.close();
             return image;
         }
@@ -78,7 +79,7 @@ client.on('message_create', async (message: Message) => {
             if(!browser) return
             const page = await browser.newPage();
             await page.goto(`https://www.google.com/search?q=${message.body.replace('!imagem', '')}&tbm=isch`);
-            await page.click('img.rg_i.Q4LuWd',{ button: "middle"});
+            await page.click('img.rg_i.Q4LuWd');
             await page.waitForTimeout(7000);
             const image = await page.screenshot({ encoding: 'base64', type: 'jpeg', quality: 100, clip: { x: 0, y: 0, width: 1250, height: 1250 } });
             await page.close();
