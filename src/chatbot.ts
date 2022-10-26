@@ -6,7 +6,7 @@ const client = new Client(
    { 
     puppeteer: {
         headless: false,
-        args: ["--no-sandbox"],
+        args: ['--disable-setuid-sandbox',"--no-sandbox"],
     },
     authStrategy: new LocalAuth()
 }
