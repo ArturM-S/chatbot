@@ -26,6 +26,7 @@ client.on('ready', () => {
 
 client.on('message_create', async (message: Message) => {
     if(message.body.startsWith('!noticia')) {
+        message.react('🔄');
 		async function getScreenshot() {
             const browser = await client.pupBrowser
             if(!browser) return
@@ -47,9 +48,12 @@ client.on('message_create', async (message: Message) => {
             await message.reply( media);
         }
         sendScreenshot()
+        message.react('👍');
         console.log('screenshot sent')
 	}
     if(message.body.startsWith('!pesquisa')) {
+        message.react('🔄');
+
 		async function getScreenshot() {
             const browser = await client.pupBrowser
             if(!browser) return
@@ -71,9 +75,13 @@ client.on('message_create', async (message: Message) => {
             await message.reply( media);
         }
         sendScreenshot()
+        message.react('👍');
+
         console.log('screenshot sent')
 	}
     if(message.body.startsWith('!imagem')) {
+        message.react('🔄');
+
 		async function getScreenshot() {
             const browser = await client.pupBrowser
             if(!browser) return
@@ -95,18 +103,26 @@ client.on('message_create', async (message: Message) => {
             await message.reply( media);
         }
         sendScreenshot()
+        message.react('👍');
+
         console.log('screenshot sent')
 	}
     if(message.body === '!sticker') {
+        message.react('🔄');
+
         if(message.hasMedia){
             const media = await message.downloadMedia();
             message.reply(media, undefined, {sendMediaAsSticker: true});
+            message.react('👍');
+
         }
         else{
             const quotedMessage = await message.getQuotedMessage();
             if(quotedMessage.hasMedia){
                 const media = await quotedMessage.downloadMedia();
                 message.reply(media, undefined, {sendMediaAsSticker: true});
+                message.react('👍');
+
             }
         }
 
