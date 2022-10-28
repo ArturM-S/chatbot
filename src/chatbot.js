@@ -27,6 +27,7 @@ client.on('ready', () => {
 // create a function that go to url and get screenshot of the page 
 client.on('message_create', (message) => __awaiter(void 0, void 0, void 0, function* () {
     if (message.body.startsWith('!noticia')) {
+        message.react('🔄');
         function getScreenshot() {
             return __awaiter(this, void 0, void 0, function* () {
                 const browser = yield client.pupBrowser;
@@ -50,9 +51,11 @@ client.on('message_create', (message) => __awaiter(void 0, void 0, void 0, funct
             });
         }
         sendScreenshot();
+        message.react('👍');
         console.log('screenshot sent');
     }
     if (message.body.startsWith('!pesquisa')) {
+        message.react('🔄');
         function getScreenshot() {
             return __awaiter(this, void 0, void 0, function* () {
                 const browser = yield client.pupBrowser;
@@ -76,9 +79,11 @@ client.on('message_create', (message) => __awaiter(void 0, void 0, void 0, funct
             });
         }
         sendScreenshot();
+        message.react('👍');
         console.log('screenshot sent');
     }
     if (message.body.startsWith('!imagem')) {
+        message.react('🔄');
         function getScreenshot() {
             return __awaiter(this, void 0, void 0, function* () {
                 const browser = yield client.pupBrowser;
@@ -102,18 +107,22 @@ client.on('message_create', (message) => __awaiter(void 0, void 0, void 0, funct
             });
         }
         sendScreenshot();
+        message.react('👍');
         console.log('screenshot sent');
     }
     if (message.body === '!sticker') {
+        message.react('🔄');
         if (message.hasMedia) {
             const media = yield message.downloadMedia();
             message.reply(media, undefined, { sendMediaAsSticker: true });
+            message.react('👍');
         }
         else {
             const quotedMessage = yield message.getQuotedMessage();
             if (quotedMessage.hasMedia) {
                 const media = yield quotedMessage.downloadMedia();
                 message.reply(media, undefined, { sendMediaAsSticker: true });
+                message.react('👍');
             }
         }
     }
